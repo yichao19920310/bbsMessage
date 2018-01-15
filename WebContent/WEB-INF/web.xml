@@ -4,28 +4,4 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <servlet-name>Login</servlet-name>
-    <servlet-class>com.yc.servlet.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Login</servlet-name>
-    <url-pattern>/doLogin</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Register</servlet-name>
-    <servlet-class>com.yc.servlet.RegisterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Register</servlet-name>
-    <url-pattern>/doRegister</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>GetUList</servlet-name>
-    <servlet-class>com.yc.servlet.GetUListServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GetUList</servlet-name>
-    <url-pattern>/doGetUList</url-pattern>
-  </servlet-mapping>
 </web-app>

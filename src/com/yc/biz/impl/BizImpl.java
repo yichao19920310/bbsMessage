@@ -134,6 +134,18 @@ public class BizImpl implements Biz{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if(mList!=null){
+			for (Message m : mList) {
+				User u = null;
+				try {
+					u = d.getUserById(m.getSendId());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				m.setSendUser(u.getUsername());
+			}
+		}
 		return mList;
 	}
 	@Override
@@ -143,6 +155,30 @@ public class BizImpl implements Biz{
 			m = d.getMessageById(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		
+		if(m!=null&&m.getState()==0){
+			User u = null;
+			try {
+				u = d.getUserById(m.getSendId());
+				d.readMsg(id);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			if(u!=null){
+				m.setSendUser(u.getUsername());
+			}
+		}else{
+			User u = null;
+			try {
+				u = d.getUserById(m.getSendId());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(u!=null){
+				m.setSendUser(u.getUsername());
+			}
 		}
 		return m;
 	}

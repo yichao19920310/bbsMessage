@@ -79,4 +79,31 @@ public class DaoImpl implements Dao{
 		return run.query(sql, new BeanHandler<>(Message.class),id);
 	}
 
+	/* (非 Javadoc)  
+	* <p>Title: readMsg</p>  
+	* <p>Description: </p>    
+	* @see com.yc.dao.Dao#readMsg()  
+	*/  
+	@Override
+	public void readMsg(int id) throws SQLException {
+		QueryRunner run = JDBCUtils.getQueryRunner();
+		String sql = "update messages set state = 1 where id = ?";
+		run.update(sql,id);
+		
+	}
+
+	/* (非 Javadoc)  
+	* <p>Title: getUserById</p>  
+	* <p>Description: </p>  
+	* @param id
+	* @return  
+	* @see com.yc.dao.Dao#getUserById(int)  
+	*/  
+	@Override
+	public User getUserById(int id) throws SQLException {
+		QueryRunner run = JDBCUtils.getQueryRunner();
+		String sql = "select * from users where id = ?";
+		return run.query(sql, new BeanHandler<>(User.class),id);
+	}
+
 }

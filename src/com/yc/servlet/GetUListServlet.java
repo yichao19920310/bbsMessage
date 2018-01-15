@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,7 @@ import com.yc.biz.impl.BizImpl;
 * @date 2018年1月10日  
 *    
 */
+@WebServlet("/doGetUList")
 public class GetUListServlet extends HttpServlet {
 
 	/* (非 Javadoc)  

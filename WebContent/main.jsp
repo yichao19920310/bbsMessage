@@ -18,10 +18,11 @@
 			success:function(msg){
 				var jsonArray=msg;
 				$(jsonArray).each(function(index){
-					var $a = $("<a></a>");
-					$a.attr("href","doReadMsg?MsgId="+this.id);
-					$a.text("题目:"+this.title+" 来自:"+this.sendId+" 时间:"+this.msg_Create_Date);
-					$(".messageList").append($a).append("<br/>");
+					var $li = $("<li></li>");
+					$li.attr("class",(this.state==0)?"unReaded":"");
+					$li.html("题目:"+this.title+" 来自:"+this.sendUser+
+							" 时间:"+this.msg_Create_Date+"<em><a href='doReadMsg?MsgId="+this.id+"'>查看</a></em>");
+					$(".messageList ul").append($li);
 				});				
 			}
 		})
@@ -40,7 +41,7 @@
 			</div>
 			<!--短消息列表  -->
 			<div class="content messageList">
-				
+				<ul></ul>
 			</div>
 		</div>
 	</div>

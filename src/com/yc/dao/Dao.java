@@ -38,4 +38,26 @@ public interface Dao {
 
 	Message getMessageById(int id) throws SQLException;
 
+	/**
+	 * @throws SQLException 
+	 * @param id   
+	* @Title: readMsg  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param     参数  
+	* @return void    返回类型  
+	* @throws  
+	*/  
+	void readMsg(int id) throws SQLException;
+
+	/**
+	 * @throws SQLException   
+	* @Title: getUserById  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param id
+	* @param @return    参数  
+	* @return User    返回类型  
+	* @throws  
+	*/  
+	User getUserById(int id) throws SQLException;
+
 }

@@ -3,6 +3,7 @@ package com.yc.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yc.biz.Biz;
 import com.yc.biz.impl.BizImpl;
 
+@WebServlet("/doRegister")
 public class RegisterServlet extends HttpServlet{	
 		
 	/**
@@ -29,10 +31,12 @@ public class RegisterServlet extends HttpServlet{
 		String email = req.getParameter("email");
 		if(b.register(username,password,affirm,email)){
 			System.out.println("用户:"+username+" 注册成功!");
-			resp.sendRedirect("index.jsp");
+			resp.getWriter().write("OK");
+			
 		}else{
 			System.out.println("用户:"+username+" 注册失败!");
-			resp.getWriter().write("注册失败!");
+			resp.getWriter().write("ERROR");
+			
 		}
 		
 	}

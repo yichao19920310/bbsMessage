@@ -19,6 +19,25 @@ public class Message {
 
 	private int id;
 	private int sendId;
+	private String sendUser;
+	public Message(int id, int sendId, String sendUser, String title, String msgContent, int state, int receiveId,
+			String msg_Create_Date) {
+		super();
+		this.id = id;
+		this.sendId = sendId;
+		this.sendUser = sendUser;
+		this.title = title;
+		this.msgContent = msgContent;
+		this.state = state;
+		this.receiveId = receiveId;
+		this.msg_Create_Date = msg_Create_Date;
+	}
+	public String getSendUser() {
+		return sendUser;
+	}
+	public void setSendUser(String sendUser) {
+		this.sendUser = sendUser;
+	}
 	private String title;
 	private String msgContent;
 	private int state;

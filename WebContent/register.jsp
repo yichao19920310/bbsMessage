@@ -7,7 +7,10 @@
 <link type="text/css" rel="stylesheet" href="css/sms.css" />
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript">
+	
+	var flag = false;
 	$(function(){
+		
 		$("#ip_username").change(function(){
 			$.ajax({
 				type:"get",
@@ -17,20 +20,39 @@
 					$("#error").text(msg);
 					if("用户名可注册."==msg){
 						$("#error").css("color","black");
-						$("#btn_sub").prop("type","submit").attr("onclick","none");
-					
+						//$("#btn_sub").prop("type","submit").attr("onclick","none");
+						flag = true;
 						//$("#btn_sub").show();
 					}else{
 						$("#error").css("color","red");
-						$("#btn_sub").prop("type","button").attr("onclick","notAllow()");
+						//$("#btn_sub").prop("type","button").attr("onclick","notAllow()");
 						//$("#btn_sub").hide();
+						flag = false;
 					}
 				}
 			});
 		});
 	});
-	function notAllow(){
-		alert("无法注册,请更改用户名!")
+	function regist(){
+		if(flag){
+			$.ajax({
+				type:"post",
+				url:"doRegister",
+				data:$("form").serialize(),
+				success:function(msg){
+					if(msg=="OK"){
+						alert("注册成功!");
+						location.href="index.jsp";
+					}else{
+						alert("注册失败!");
+						location.href="register.jsp";
+					}
+				}
+			});
+		}else{
+			alert("无法注册,请更改用户名!");
+		}
+		
 	};
 </script>
 </head>
@@ -60,7 +82,7 @@
 				</dd>
 			</dl>
 			<div class="buttons">
-				<input class="btn-reg png" type="submit" name="register" value=" " id="btn_sub"/><input
+				<input class="btn-reg png" type="button" name="register" value=" " id="btn_sub" onclick="regist()"/><input
 					class="btn-reset png" type="reset" name="reset" value=" " />
 			</div>
 			<div class="goback">

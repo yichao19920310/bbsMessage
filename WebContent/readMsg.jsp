@@ -17,7 +17,7 @@
 					<div class="tmenu">
 						<ul class="clearfix">
 							<li>题目: ${msg.title}</li>
-							<li>来自：${msg.sendId}</li>
+							<li>来自：${msg.sendUser}</li>
 							<li>时间: ${msg.msg_Create_Date}</li>
 						</ul>
 					</div>
