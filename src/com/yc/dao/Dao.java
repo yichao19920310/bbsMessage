@@ -60,4 +60,27 @@ public interface Dao {
 	*/  
 	User getUserById(int id) throws SQLException;
 
+	/**
+	 * @throws SQLException   
+	* @Title: queryCount  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param receiveId
+	* @param @return    参数  
+	* @return int    返回类型  
+	* @throws  
+	*/  
+	int queryCount(int receiveId) throws SQLException;
+
+	/**  
+	* @Title: queryList  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param receiveId
+	* @param @param start
+	* @param @param end
+	* @param @return    参数  
+	* @return List<Message>    返回类型  
+	* @throws  
+	*/  
+	List<Message> queryList(int receiveId, int start, int end) throws SQLException;
+
 }

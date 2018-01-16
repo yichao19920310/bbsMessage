@@ -3,11 +3,20 @@ package com.yc.biz;
 import java.util.List;
 
 import com.yc.bean.Message;
+import com.yc.bean.Pager;
 import com.yc.bean.User;
 
 
 public interface Biz {
-
+	/**
+	 * 
+	 * @Title: login  
+	 * @Description: TODO(这里用一句话描述这个方法的作用)  
+	 * @param username
+	 * @param password
+	 * @return 返回类型User        
+	 * @throws
+	 */
 	User login(String username, String password);
 
 	boolean register(String username, String password, String affirm, String email);
@@ -44,5 +53,16 @@ public interface Biz {
 	List<Message> getMessageByUser(int receiveId);
 
 	Message getMessageById(int id);
+
+	/**  
+	* @Title: showAll  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param receiveId
+	* @param @param pager
+	* @param @return    参数  
+	* @return List<Message>    返回类型  
+	* @throws  
+	*/  
+	List<Message> showAll(int receiveId, Pager pager);
 
 }

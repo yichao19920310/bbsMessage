@@ -31,10 +31,10 @@ public class SendMsgServlet extends HttpServlet {
 		Biz b = new BizImpl();
 		if(b.sendMsg(m)){
 			request.setAttribute("sendMsg", true);
-			request.getRequestDispatcher("main.jsp").forward(request, response);
+			request.getRequestDispatcher("doGetMList").forward(request, response);
 		}else{
 			request.setAttribute("sendMsg", false);
-			request.getRequestDispatcher("main.jsp").forward(request, response);
+			request.getRequestDispatcher("doGetMList").forward(request, response);
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.yc.bean.Message;
+import com.yc.bean.Pager;
 import com.yc.bean.User;
 import com.yc.biz.Biz;
 import com.yc.dao.Dao;
@@ -181,6 +182,32 @@ public class BizImpl implements Biz{
 			}
 		}
 		return m;
+	}
+	/* (非 Javadoc)  
+	* <p>Title: showAll</p>  
+	* <p>Description: </p>  
+	* @param receiveId
+	* @param pager
+	* @return  
+	* @see com.yc.biz.Biz#showAll(int, com.yc.bean.Pager)  
+	*/  
+	@Override
+	public List<Message> showAll(int receiveId, Pager pager) {
+		List<Message> list = null;
+		try {
+			//3.获取记录总数
+			int count = d.queryCount(receiveId);
+			//4.将总数设置到pager对象中
+			pager.setRecordCount(count);
+			//5.根据当前用户选择的页码算出区间  
+			int start = (pager.getCurrentPage()-1)*pager.PAGE_RECORD;
+			int end = start+pager.PAGE_RECORD;
+			//6.调用dao，传入start&end，查询区间集合
+			list = d.queryList(receiveId,start,end);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;		
 	}
 
 }

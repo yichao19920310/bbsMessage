@@ -17,7 +17,7 @@
 			success:function(msg){
 				if(msg=="OK"){
 					alert("登录成功!");
-					location.href="main.jsp";
+					location.href="doGetMList";
 				}else{
 					alert("登录失败!");
 					$("form")[0].reset();

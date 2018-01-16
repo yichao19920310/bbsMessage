@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <div class="menu">
-	<span>当前用户：<a href="main.jsp">${user.username}</a></span> 
+	<span>当前用户：<a href="doGetMList">${user.username}</a></span> 
 	<span><a href="newMsg.jsp">发短消息</a></span> 
 	<span><a href="index.jsp">退出</a></span>
 </div>

@@ -1,5 +1,8 @@
 package com.yc.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -104,6 +107,58 @@ public class DaoImpl implements Dao{
 		QueryRunner run = JDBCUtils.getQueryRunner();
 		String sql = "select * from users where id = ?";
 		return run.query(sql, new BeanHandler<>(User.class),id);
+	}
+
+	/* (非 Javadoc)  
+	* <p>Title: queryCount</p>  
+	* <p>Description: </p>  
+	* @param receiveId
+	* @return  
+	* @see com.yc.dao.Dao#queryCount(int)  
+	*/  
+	@Override
+	public int queryCount(int receiveId) throws SQLException {
+		int count = -1;
+		//贾琏
+		Connection conn = JDBCUtils.getConnection();
+		String sql = "SELECT COUNT(ID) FROM Messages where receiveid = ?";
+		//欲
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, receiveId);
+		//执
+		ResultSet rs = ps.executeQuery();
+		//事
+		if(rs.next()){
+			count = rs.getInt(1);
+		}
+		//毙
+		rs.close();
+		ps.close();
+		conn.close();
+		return count;
+	}
+
+	/* (非 Javadoc)  
+	* <p>Title: queryList</p>  
+	* <p>Description: </p>  
+	* @param receiveId
+	* @param start
+	* @param end
+	* @return
+	* @throws SQLException  
+	* @see com.yc.dao.Dao#queryList(int, int, int)  
+	*/  
+	@Override
+	public List<Message> queryList(int receiveId, int start, int end) throws SQLException {
+		QueryRunner run = JDBCUtils.getQueryRunner();
+		String sql = "SELECT * FROM("
+				+ "SELECT ROWNUM R,MESSAGES.* "
+				+ "FROM MESSAGES WHERE RECEIVEID = ?) T "
+				+ "WHERE T.R>? AND T.R<=?";
+		List<Message> list = run.query(sql, 
+				new BeanListHandler<>(Message.class),
+				receiveId,start,end);
+		return list;
 	}
 
 }

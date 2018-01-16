@@ -8,26 +8,8 @@
 <link type="text/css" rel="stylesheet" href="css/sms.css" />
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript">
-	 $(function(){
-		var id = ${user.id};
-		$.ajax({
-			type:"post",
-			url:"doGetMList",
-			data:"id="+id,
-			dataType:"json",
-			success:function(msg){
-				var jsonArray=msg;
-				$(jsonArray).each(function(index){
-					var $li = $("<li></li>");
-					$li.attr("class",(this.state==0)?"unReaded":"");
-					$li.html("题目:"+this.title+" 来自:"+this.sendUser+
-							" 时间:"+this.msg_Create_Date+"<em><a href='doReadMsg?MsgId="+this.id+"'>查看</a></em>");
-					$(".messageList ul").append($li);
-				});				
-			}
-		})
-	}) 
-	</script>
+	
+</script>
 </head>
 <body>
 	<div id="main">
@@ -41,7 +23,27 @@
 			</div>
 			<!--短消息列表  -->
 			<div class="content messageList">
-				<ul></ul>
+				<ul>
+					<c:forEach items="${mList}" var="m">						
+							<li class="${m.state==0?'unReaded':''}">
+								题目:${m.title} 来自:${m.sendUser} 时间:${m.msg_Create_Date}
+								<em><a href="readMsg.jsp?MsgId=${m.id}" style="color:#ff0000">查看</a></em>
+							</li>
+					</c:forEach>
+				</ul>
+			</div>
+			<!--分页-->
+			<div class="page-spliter">
+				<a href="doGetMList?page=${pager.prevPage}">上一页</a>
+				<c:forEach items="${pager.groupList}" var="i">
+					<c:if test="${i==pager.currentPage}">
+						${i}
+					</c:if>
+					<c:if test="${i!=pager.currentPage}">
+						<a href="doGetMList?page=${i}">${i}</a>
+					</c:if>
+				</c:forEach>
+				<a href="doGetMList?page=${pager.nextPage}">下一页</a>
 			</div>
 		</div>
 	</div>
